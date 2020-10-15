@@ -56,16 +56,7 @@ class ODEnet:
         der_f = np.array([der_f for _ in range(len(der_f))]).T * z
         dw = -(a.reshape(-1, 1)*der_f).flatten()
         return np.array([*dw, *db])
-    
-    # def augmented_f(self, t, za0, wb):
-    #     e1, e2 = self.HP['E1'], self.HP['E2']
-    #     t = self.t2t(t)
-    #     w, b = wb[t][0], wb[t][1]
-    #     z0, a0 = za0[:len(za0)//2], za0[len(za0)//2:]
-    #     dz = e1*self.activation(np.dot(w, z0) + b) - e2*z0
-    #     da = -np.dot(a0, (w*e1*self.der_activation(np.dot(w, z0) + b).reshape(len(z0), -1) - e2*np.ones(len(z0)).reshape(len(z0), -1)))
-    #     return np.array([*dz, *da])
-        
+
     def augmented_f(self, t, za0, params):
         hp, wb = params[0], params[1]
         e1, e2 = hp['E1'],hp['E2']
