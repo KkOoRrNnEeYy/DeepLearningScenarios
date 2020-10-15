@@ -115,7 +115,3 @@ def analyse_points(model, precision, parameter, p_values):
     for i in range(len(p_values)):
         model.HP[parameter] = p_values[i]
         boundary_net_training(model, precision, za0, z0, zs, parameter)
-    
-HP = {'T': 10, 'LR': 0.0005, 'E1': 1, 'E2': 0, 'N': 4}
-nn = gen_model(HP)
-biffurcation_analysis(nn, 'E2', 0.001, -10)
