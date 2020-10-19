@@ -134,7 +134,7 @@ class ODEnet:
         self.save_za(za)
         time_steps.reverse()
         dwb0 = np.zeros(len(zs)**2 + len(zs))
-        dwb = euler(time_steps, dwb0, self.w_adjoint, (self.Z, self.A, self.wb))
+        dwb = runge_kutta(time_steps, dwb0, self.w_adjoint, (self.Z, self.A, self.wb))
         self.change_weights(dwb)
         return newton_steps, det, sv
     
